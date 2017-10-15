@@ -12,6 +12,8 @@ public class ApplicationController extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        //Initialize realm (so we can create realm instance anywhere,just once per application)
         Realm.init(this);
     }
 }
