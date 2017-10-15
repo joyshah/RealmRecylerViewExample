@@ -29,13 +29,12 @@ public class MainActivity extends AppCompatActivity {
         mFab = (FloatingActionButton) findViewById(R.id.fab);
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
 
-        mFab.setImageResource(R.drawable.ic_add_circle_accent_24dp);
+
         setupRecyclerView();
 
         mFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 showInputDialog();
             }
         });
