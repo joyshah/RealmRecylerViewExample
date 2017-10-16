@@ -1,5 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="padding_4">4dp</dimen>
-    <dimen name="margin_4">4dp</dimen>
+
+    <dimen name="mar_4">4dp</dimen>
+    <dimen name="mar_8">8dp</dimen>
+    <dimen name="mar_16">16dp</dimen>
+    <dimen name="mar_24">24dp</dimen>
+    <dimen name="mar_32">32dp</dimen>
+    <dimen name="mar_40">40dp</dimen>
+    <dimen name="mar_48">48dp</dimen>
+    <dimen name="mar_56">56dp</dimen>
+    <dimen name="mar_64">64dp</dimen>
+    <dimen name="mar_72">72dp</dimen>
+    <dimen name="mar_80">80dp</dimen>
+
+
+    <dimen name="pad_4">4dp</dimen>
+    <dimen name="pad_8">8dp</dimen>
+    <dimen name="pad_10">10dp</dimen>
+    <dimen name="pad_16">16dp</dimen>
+    <dimen name="pad_24">24dp</dimen>
+    <dimen name="pad_32">32dp</dimen>
+    <dimen name="pad_40">40dp</dimen>
+    <dimen name="pad_48">48dp</dimen>
+    <dimen name="pad_56">56dp</dimen>
+    <dimen name="pad_64">64dp</dimen>
+    <dimen name="pad_72">72dp</dimen>
+    <dimen name="pad_80">80dp</dimen>
+
+
+    <dimen name="icon_size">16dp</dimen>
 </resources>

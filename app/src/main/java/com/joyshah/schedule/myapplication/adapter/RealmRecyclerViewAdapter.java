@@ -1,4 +1,8 @@
-package com.joyshah.schedule.myapplication;
+package com.joyshah.schedule.myapplication.adapter;
+
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v7.widget.RecyclerView;
 
 import io.realm.OrderedCollectionChangeSet;
 import io.realm.OrderedRealmCollection;
@@ -6,10 +10,6 @@ import io.realm.OrderedRealmCollectionChangeListener;
 import io.realm.RealmList;
 import io.realm.RealmModel;
 import io.realm.RealmResults;
-
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.RecyclerView;
 /**
  * Created by Joy Shah on 15-10-2017.
  */
@@ -22,6 +22,35 @@ public abstract class RealmRecyclerViewAdapter<T extends RealmModel, S extends R
     private final OrderedRealmCollectionChangeListener listener;
     @Nullable
     private OrderedRealmCollection<T> adapterData;
+
+    /**
+     * This is equivalent to {@code RealmRecyclerViewAdapter(data, autoUpdate, true)}.
+     *
+     * @see #RealmRecyclerViewAdapter(OrderedRealmCollection, boolean, boolean)
+     */
+    RealmRecyclerViewAdapter(@Nullable OrderedRealmCollection<T> data, boolean autoUpdate) {
+        this(data, autoUpdate, true);
+    }
+
+    /**
+     * @param data                 collection data to be used by this adapter.
+     * @param autoUpdate           when it is {@code false}, the adapter won't be automatically updated when collection data
+     *                             changes.
+     * @param updateOnModification when it is {@code true}, this adapter will be updated when deletions, insertions or
+     *                             modifications happen to the collection data. When it is {@code false}, only
+     *                             deletions and insertions will trigger the updates. This param will be ignored if
+     *                             {@code autoUpdate} is {@code false}.
+     */
+    RealmRecyclerViewAdapter(@Nullable OrderedRealmCollection<T> data, boolean autoUpdate,
+                             boolean updateOnModification) {
+        if (data != null && !data.isManaged())
+            throw new IllegalStateException("Only use this adapter with managed RealmCollection, " +
+                    "for un-managed lists you can just use the BaseRecyclerViewAdapter");
+        this.adapterData = data;
+        this.hasAutoUpdates = autoUpdate;
+        this.listener = hasAutoUpdates ? createListener() : null;
+        this.updateOnModification = updateOnModification;
+    }
 
     private OrderedRealmCollectionChangeListener createListener() {
         return new OrderedRealmCollectionChangeListener() {
@@ -54,35 +83,6 @@ public abstract class RealmRecyclerViewAdapter<T extends RealmModel, S extends R
                 }
             }
         };
-    }
-
-    /**
-     * This is equivalent to {@code RealmRecyclerViewAdapter(data, autoUpdate, true)}.
-     *
-     * @see #RealmRecyclerViewAdapter(OrderedRealmCollection, boolean, boolean)
-     */
-    public RealmRecyclerViewAdapter(@Nullable OrderedRealmCollection<T> data, boolean autoUpdate) {
-        this(data, autoUpdate, true);
-    }
-
-    /**
-     * @param data collection data to be used by this adapter.
-     * @param autoUpdate when it is {@code false}, the adapter won't be automatically updated when collection data
-     *                   changes.
-     * @param updateOnModification when it is {@code true}, this adapter will be updated when deletions, insertions or
-     *                             modifications happen to the collection data. When it is {@code false}, only
-     *                             deletions and insertions will trigger the updates. This param will be ignored if
-     *                             {@code autoUpdate} is {@code false}.
-     */
-    public RealmRecyclerViewAdapter(@Nullable OrderedRealmCollection<T> data, boolean autoUpdate,
-                                    boolean updateOnModification) {
-        if (data != null && !data.isManaged())
-            throw new IllegalStateException("Only use this adapter with managed RealmCollection, " +
-                    "for un-managed lists you can just use the BaseRecyclerViewAdapter");
-        this.adapterData = data;
-        this.hasAutoUpdates = autoUpdate;
-        this.listener = hasAutoUpdates ? createListener() : null;
-        this.updateOnModification = updateOnModification;
     }
 
     @Override

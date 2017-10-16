@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">RealmRecyclerViewDemo</string>
-    <string name="str_country_name">Enter Country Name</string>
+    <string name="str_name">Enter Name</string>
     <string name="str_add">Add</string>
     <string name="str_cancel">Cancel</string>
+    <string name="str_delete">delete</string>
+    <string name="str_edit">edit</string>
+    <string name="str_edit_name">Edit Name</string>
+
 </resources>
